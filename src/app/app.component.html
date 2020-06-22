@@ -1,0 +1,50 @@
+<h3>Session Timer</h3>
+
+<div class="session-timer-wrapper">
+
+	<form [formGroup]="timerForm" >
+		<div class="form-group text-center d-flex">
+			<div class="time-in hour">
+				<input class="digit" (keyup)='tabChange(1,$event)' type="text" maxlength=1
+                                                formControlName="firstDigit" pattern="[0-9]*" autocomplete="off">
+				<input class="digit" (keyup)='tabChange(2,$event)' type="text" maxlength=1
+                                                formControlName="secondDigit" pattern="[0-9]*" autocomplete="off"> <span
+                                                class="time-indicator">Hours</span> :
+			</div>
+			<div class="time-in hour">
+				<input class="digit" (keyup)='tabChange(3,$event)' type="text" maxlength=1
+                                                formControlName="thirdDigit" pattern="[0-9]*" autocomplete="off">
+				<input class="digit" (keyup)='tabChange(4,$event)' type="text" maxlength=1
+                                                formControlName="fourthDigit" pattern="[0-9]*" autocomplete="off"> <span
+                                                class="time-indicator">Mins</span> :
+			</div>
+			<div class="time-in hour">
+				<input class="digit" (keyup)='tabChange(5,$event)' type="text" maxlength=1
+                                                formControlName="fifthDigit" pattern="[0-9]*" autocomplete="off">
+				<input class="digit" (keyup)='tabChange(6,$event)' type="text" maxlength=1
+                                                formControlName="sixthDigit" pattern="[0-9]*" autocomplete="off"> <span
+                                                class="time-indicator">Secs</span>
+			</div>
+		</div>
+	</form>
+
+	<div>
+		<!-- <span>{{totalSeconds}} seconds</span> -->
+		<p>{{timeShow | json}}</p>
+	</div>
+
+	<div class="d-flex">
+		<button type="button" [disabled]="timerForm.invalid" (click)="onSubmitStartTimer()" *ngIf="isShow"
+                                        class="btn btn-danger live mt-4 mr-3">
+                                        start
+                                    </button>
+    <button type="button" (click)="restartStartTimer()" *ngIf="!isShow"
+                                        class="btn btn-danger live mt-4 mr-3">
+                                        Re-start
+                                    </button>
+		<button (click)='this.timerForm.reset()' *ngIf='isShow' type="button"
+                                        class="btn live mt-4" style="color: #b72528 !important;">
+                                        Reset
+                                    </button>
+	</div>
+</div>
